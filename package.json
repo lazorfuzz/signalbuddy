@@ -1,6 +1,6 @@
 {
   "name": "signalbuddy",
-  "description": "A scalable, socket.io WebRTC signaling solution for LioWebRTC.",
+  "description": "A scalable socket.io signaling solution for WebRTC using NodeJS cluster and Redis.",
   "version": "1.0.0",
   "dependencies": {
     "farmhash": "^2.1.0",

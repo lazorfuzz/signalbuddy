@@ -27,6 +27,7 @@ if (cluster.isMaster) {
   };
 
   for (let i = 0; i < numProcesses; i += 1) {
+    console.log(`Starting worker ${i + 1}`);
     spawn(i);
   }
 

@@ -6,6 +6,10 @@
     "key": null,
     "cert": null
   },
+  "redis": {
+    "endpoint": "localhost",
+    "port": 6379
+  },
   "rooms": {
     "/* maxClients */": "/* maximum number of clients per room. 0 = no limit */",
     "maxClients": 0

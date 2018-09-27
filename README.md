@@ -4,7 +4,7 @@ A scalable signaling server for WebRTC using socket.io, NodeJS cluster, and Redi
 
 ## What is SignalBuddy?
 
-SignalBuddy is an easy-to-scale signaling solution for WebRTC. SignalBuddy automatically detects and scales across the number of CPU cores in its environment. For instance, if the machine you're testing on has four cores, SignalBuddy will launch a cluster of four processes, each a separate instance of itself, all listening on the same port. Using Redis to store state, peers connected to different worker instances will still be able to broadcast and transmit data to one another.
+SignalBuddy is an easy-to-scale signaling solution for WebRTC. SignalBuddy automatically detects and scales across the number of CPU cores in its environment. For instance, if the machine you're testing on has four cores, SignalBuddy will launch a cluster of four processes, each a separate instance of itself, all listening on the same port. Using Redis to store state, peers connected to different worker instances, even on different servers, will still be able to join the same rooms and broadcast data to one another.
 
 ## Running
 
@@ -53,7 +53,14 @@ Most likely, you'll want the server to be secure. You can either pass in the pat
 NODE_ENV=production PRIV_KEY=/etc/example/privKey.pem CERT=/etc/example/cert.pem node dist/server.js
 ```
 
-Or you can also add your key/cert paths to the production.json file in the config folder.
+Or you can add your key/cert paths to the production.json file in the config folder.
+
+To pass in the Redis endpoint and port, use REDIS_ENDPOINT and REDIS_PORT:
+```
+NODE_ENV=production REDIS_ENDPOINT=localhost REDIS_PORT=6379 node dist/server.js
+```
+
+As with keys and certs, you can also add Redis endpoint details to your JSON config files.  
 
 ---
 

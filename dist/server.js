@@ -60,6 +60,7 @@ if (_cluster2.default.isMaster) {
   };
 
   for (var i = 0; i < numProcesses; i += 1) {
+    console.log('Starting worker ' + (i + 1));
     spawn(i);
   }
 
@@ -96,8 +97,8 @@ if (_cluster2.default.isMaster) {
   // Create an http(s) server instance to that socket.io can listen to
   if (_getconfig2.default.server.secure) {
     server = _https2.default.Server({
-      key: _fs2.default.readFileSync(_getconfig2.default.server.key),
-      cert: _fs2.default.readFileSync(_getconfig2.default.server.cert),
+      key: _fs2.default.readFileSync(process.env.PRIV_KEY || _getconfig2.default.server.key),
+      cert: _fs2.default.readFileSync(process.env.CERT || _getconfig2.default.server.cert),
       passphrase: _getconfig2.default.server.password
     }, serverHandler);
   } else {
@@ -122,7 +123,6 @@ if (_cluster2.default.isMaster) {
     if (message !== 'sticky-session:connection') {
       return;
     }
-
     // Emulate a connection event on the server by emitting the
     // event with the connection the master sent us.
     server.emit('connection', connection);

@@ -5,3 +5,5 @@ ecosystem.config.js
 Dockerfile
 .drone.yml
 dist
+.jshintignore
+.jshintrc
