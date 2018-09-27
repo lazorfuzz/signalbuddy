@@ -7,3 +7,4 @@ Dockerfile
 dist
 .jshintignore
 .jshintrc
+yarn-error.log

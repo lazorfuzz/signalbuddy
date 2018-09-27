@@ -1,7 +1,7 @@
 import tape from 'tape';
 import config from 'getconfig';
-import server from './server';
 import io from 'socket.io-client';
+// import server from '../src/server';
 
 const test = tape.createHarness();
 

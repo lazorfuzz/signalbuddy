@@ -27,8 +27,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "node test.js",
-    "build": "babel src --presets babel-preset-env --out-dir dist",
+    "test": "node test/test.js",
+    "build": "rm -rf dist && babel src --presets babel-preset-env --out-dir dist",
     "start": "node dist/server.js"
   }
 }
