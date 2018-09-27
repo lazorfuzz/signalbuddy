@@ -63,10 +63,10 @@ export default (server, config) => {
       describeRoom(roomName)
         .then((description) => {
           const obj = { clients: {} };
-          description.forEach((k, i) => {
+          description.forEach((k) => {
             obj.clients[k] = client.resources;
           });
-          safeCb(callback)(null, obj)
+          safeCb(callback)(null, obj);
         })
         .catch(err => safeCb(callback)(err, null));
     }
@@ -106,12 +106,11 @@ export default (server, config) => {
       }
     });
 
-    // support for logging full webrtc traces to stdout
-    // useful for large-scale error monitoring
+    /*
     client.on('trace', (data) => {
       // console.log('trace', JSON.stringify([data.type, data.session, data.prefix, data.peer, data.time, data.value]));
     });
-
+    */
 
     // tell client about stun and turn servers and generate nonces
     client.emit('stunservers', config.stunservers || []);

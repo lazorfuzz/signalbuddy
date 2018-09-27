@@ -1,4 +1,3 @@
-/* global console */
 import config from 'getconfig';
 import fs from 'fs';
 import os from 'os';
@@ -19,9 +18,10 @@ if (cluster.isMaster) {
   const workers = [];
   const spawn = (i) => {
     workers[i] = cluster.fork();
-    // Optional: Restart worker on exit
+    // Persistence
     workers[i].on('exit', (code, signal) => {
-      console.log('respawning worker', i);
+      console.log(`Worker ${i} exited with signal ${signal}`);
+      console.log('Respawning worker', i);
       spawn(i);
     });
   };
@@ -43,7 +43,7 @@ if (cluster.isMaster) {
     worker.send('sticky-session:connection', connection);
   }).listen(port);
 
-  console.log(`Listening at ${config.server.secure ? 'https' : 'http'}://localhost:${port}/`)
+  console.log(`Listening at ${config.server.secure ? 'https' : 'http'}://localhost:${port}/`);
 } else {
   const serverHandler = (req, res) => {
     if (req.url === '/healthcheck') {
@@ -68,22 +68,14 @@ if (cluster.isMaster) {
   } else {
     server = http.Server(serverHandler);
   }
-
   if (!sticky.listen(server, port)) {
-    // Master code
-    /* server.once('listening', function() {
-
-    }); */
+    // Master
   } else {
-    // Worker code
+    // Worker
   }
-
   server.listen(0);
-
   sockets(server, Object.assign({ redisEndpoint, redisPort }, config));
-
   if (config.uid) process.setuid(config.uid);
-
   process.on('message', (message, connection) => {
     if (message !== 'sticky-session:connection') {
       return;
