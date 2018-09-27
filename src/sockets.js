@@ -97,13 +97,14 @@ export default (server, config) => {
         name = uuid();
       }
       // check if exists
-      const room = io.nsps['/'].adapter.rooms[name];
-      if (room && room.length) {
-        safeCb(cb)('taken');
-      } else {
-        join(name);
-        safeCb(cb)(null, name);
-      }
+      io.in(name).clients((err, clients) => {
+        if (clients && clients.length) {
+          safeCb(cb)('taken');
+        } else {
+          join(name);
+          safeCb(cb)(null, name);
+        }
+      });
     });
 
     /*
