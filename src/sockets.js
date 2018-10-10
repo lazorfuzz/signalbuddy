@@ -26,6 +26,7 @@ export default (server, config) => {
     client.on('join', join);
     client.on('getClients', getClients);
     client.on('getClientCount', getClientCount);
+    client.on('getMyId', getClientId);
 
     function removeFeed(type) {
       if (client.room) {
@@ -76,6 +77,10 @@ export default (server, config) => {
         .then((num) => {
           if (roomName) safeCb(callback)(num);
         });
+    }
+
+    function getClientId(callback) {
+      safeCb(callback)(client.id);
     }
 
     // we don't want to pass "leave" directly because the

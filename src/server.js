@@ -43,7 +43,7 @@ if (cluster.isMaster) {
     worker.send('sticky-session:connection', connection);
   }).listen(port);
 
-  console.log(`Listening at ${config.server.secure ? 'https' : 'http'}://localhost:${port}/`);
+  console.log(`Listening at ${config.server.secure ? 'https' : 'http'}://${process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'}:${port}/`);
 } else {
   const serverHandler = (req, res) => {
     if (req.url === '/healthcheck') {
