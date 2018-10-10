@@ -8,7 +8,7 @@ SignalBuddy is an easy-to-scale signaling solution for WebRTC. SignalBuddy autom
 
 ## What is a signaling server?
 
-WebRTC needs to be facilitated with signaling; a service that acts as a matchmaker for peers before they establish direct video/audio/data channels. Signaling can be done in any way, e.g. via good old fashioned carrier pigeons. Signaling services only need to fulfill the absolute minimal role of matchmaking peers, however SignalBuddy
+WebRTC needs to be facilitated with signaling; a service that acts as a matchmaker for peers before they establish direct video/audio/data channels. Signaling can be done in any way, e.g. via good old fashioned carrier pigeons. Signaling services only need to fulfill the absolute minimal role of matchmaking peers, however SignalBuddy comes with some extra perks, like the ability to segment peers into rooms, and STUN/TURN server dispensing.
 
 ## Startup Guide
 
