@@ -55,7 +55,7 @@ export default (server, config) => {
       }
       // leave any existing rooms
       removeFeed();
-      getClients(name, (err, clients) => safeCb(cb)(err, clients));
+      getClients(name, (err, clients) => safeCb(cb)(err, Object.assign({}, { you: client.id }, clients)));
       client.join(name);
       client.room = name;
     }
