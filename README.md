@@ -66,6 +66,3 @@ NODE_ENV=production REDIS_ENDPOINT=localhost REDIS_PORT=6379 node dist/server.js
 
 As with keys and certs, you can also add Redis endpoint details to your JSON config files.  
 
----
-
-This project is still in development. In the near future I will add a Dockerfile, as well as additional deployment methods and helpers that will make it easier to deploy on AWS, Digital Ocean, etc.
