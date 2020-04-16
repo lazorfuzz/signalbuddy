@@ -5,7 +5,7 @@
   "dependencies": {
     "farmhash": "^2.1.0",
     "getconfig": "^4.3.0",
-    "node-uuid": "1.2.0",
+    "node-uuid": "1.4.8",
     "socket.io": "^1.7.4",
     "socket.io-redis": "4.0.1",
     "sticky-session": "^1.1.2"
